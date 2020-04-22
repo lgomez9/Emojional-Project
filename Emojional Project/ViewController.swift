@@ -10,6 +10,8 @@ import UIKit
 import Foundation
 
 class ViewController: UIViewController {
+    
+    let emojis = ["🙂" : "happy", "😘" : "lovey", "😭" : "crying", "😡" : "angry"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,12 +20,16 @@ class ViewController: UIViewController {
 
     @IBAction func showMessage(sender: UIButton) {
         
+        let selectedEmotion = sender.titleLabel?.text
+        
         // Figure out which UI Button was clicked
         // Send the message associated with that button
         
-        let alertController = UIAlertController(title: "This is an alert", message: "Got it?", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: selectedEmotion!, message: emojis[selectedEmotion!], preferredStyle: UIAlertController.Style.alert)
         
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+        alertController.addAction(UIAlertAction(title: "Bye", style: UIAlertAction.Style.default, handler: nil))
         
         present(alertController, animated: true, completion: nil)
     }
